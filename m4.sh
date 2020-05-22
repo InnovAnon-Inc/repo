@@ -1,7 +1,8 @@
 #! /bin/bash
 set -exu
 
-cd ~/src
+cd "$(dirname "`readlink -f "$0"`")"/..
+
 for p in */ ; do (
    set -xu
    cd $p
