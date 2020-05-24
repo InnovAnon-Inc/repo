@@ -31,7 +31,7 @@ waitall() { # PID...
 }
 
 FILESIZE=`curl -s -I "${URL}" | sed -n 's/^Content-Length: \([0-9]*\).*/\1/p'`
-echo FILESIZE=$FILESIZE 2>
+echo FILESIZE=$FILESIZE >&2
 
 #TODO Add exit at this point if this previous step fails.
 
