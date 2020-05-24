@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
-[ $# -eq 1 ]
-URL=$1
+[[ $# -eq 1 ]]
+URL="$1"
 
 #title           :pcurl.sh
 #description     :This script will download a file in segments.
@@ -30,7 +30,8 @@ waitall() { # PID...
   ((errors == 0))
 }
 
-FILESIZE=`curl -s -I ${URL} | sed -n 's/^Content-Length: \([0-9]*\).*/\1/p'`
+FILESIZE=`curl -s -I "${URL}" | sed -n 's/^Content-Length: \([0-9]*\).*/\1/p'`
+echo FILESIZE=$FILESIZE 2>
 
 #TODO Add exit at this point if this previous step fails.
 
@@ -48,7 +49,7 @@ trap "rm -rf $PARTS" 0
 declare -a pids
 for i in $(eval echo {1..${MAX_SEGMENTS}})
 do
-  curl -s --range ${START_SEG}-${END_SEG} -o ${PARTS}/part${i} ${URL} &
+  curl -s --range ${START_SEG}-${END_SEG} -o ${PARTS}/part${i} "${URL}" &
   pids+=($!)
   START_SEG=$((${END_SEG} + 1))
   END_SEG=$((${START_SEG} + ${SEGMENT_SIZE}))
