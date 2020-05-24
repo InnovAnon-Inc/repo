@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eux
+set -eu
 URL="$1"
 if   [[ $# -eq 2 ]] ; then REDIRECT="> $2"
 elif [[ $# -eq 1 ]] ; then REDIRECT=
