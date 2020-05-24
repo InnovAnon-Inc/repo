@@ -1,7 +1,9 @@
 #!/bin/bash
 set -eu
-[[ $# -eq 1 ]]
 URL="$1"
+if   [[ $# -eq 2 ]] ; then REDIRECT="> $2"
+elif [[ $# -eq 1 ]] ; then REDIRECT=
+else exit 1 ; fi
 
 #title           :pcurl.sh
 #description     :This script will download a file in segments.
@@ -56,5 +58,5 @@ done
 
 waitall "${pids[@]}"
 
-cat $(eval echo ${PARTS}/part{`eval echo {1..${MAX_SEGMENTS}} | sed 's/ /,/g'`})
+eval cat $(eval echo ${PARTS}/part{`eval echo {1..${MAX_SEGMENTS}} | sed 's/ /,/g'`}) $REDIRECT
 
