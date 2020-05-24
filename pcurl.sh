@@ -30,7 +30,7 @@ waitall() { # PID...
   ((errors == 0))
 }
 
-FILESIZE=`curl -s -I "${URL}" | sed -n 's/^Content-Length: \([0-9]*\).*/\1/p'`
+FILESIZE=`curl -s -I "${URL}" | sed -n 's/^Content-Length: \([0-9]*\).*/\1/pI'`
 echo FILESIZE=$FILESIZE >&2
 
 #TODO Add exit at this point if this previous step fails.
