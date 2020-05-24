@@ -15,6 +15,7 @@ for k in */ ; do (
    [ -d .git ] || continue
    git add .
    git commit -m "$M"
-   git push origin master
+   #git push origin master
+   git push origin
 ) & sleep 1 ; done
 
