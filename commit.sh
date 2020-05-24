@@ -2,7 +2,7 @@
 set -exu
 
 if [[ $# -eq 0 ]] ; then
-M='auto update'
+M="auto update by $0"
 else
 M="$*"
 fi
