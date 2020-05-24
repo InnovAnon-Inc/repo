@@ -39,7 +39,7 @@ BLAH
 
 
 # https://cd34.com/blog/programming/using-git-to-generate-an-automatic-version-number/
-if [ -z "`git tag`" ] ; then
+if [[ -z "`git tag`" ]] ; then
   git tag v1.0
   set +e
   git add .
@@ -121,11 +121,11 @@ fi
 if grep -q 'bin_PROGRAMS +=' src/Makefile.am ; then
 echo 'usr/bin/*'             >> debian/${PACKAGE}1.install
 fi
-if [ $PACKAGE = yacs ] ; then
+if [[ $PACKAGE = yacs ]] ; then
 #mkdir -v debian/tmp
 echo 'bin/*'             >> debian/${PACKAGE}1.install
 fi
-if [ -e doxygen.cfg ] ; then
+if [[ -e doxygen.cfg ]] ; then
 #echo 'doxygen-doc/man/man1/*.1' >> debian/${PACKAGE}-doc.install
 #echo 'doxygen-doc/man/man1/*.*' >> debian/manpages
 echo 'doxygen-doc/man/man1/*' >> debian/manpages

@@ -12,8 +12,8 @@ set -exu
 
 PROJECT=$1
 BRANCH=$2
-if   [ $# -eq 2 ] ; then DIR=$PROJECT-$BRANCH
-elif [ $# -eq 3 ] ; then DIR=$3
+if   [[ $# -eq 2 ]] ; then DIR=$PROJECT-$BRANCH
+elif [[ $# -eq 3 ]] ; then DIR=$3
 else exit 1 ; fi
 
 cd "`dirname "$(readlink -f "$0")"`"/..

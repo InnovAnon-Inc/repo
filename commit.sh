@@ -1,7 +1,7 @@
 #! /bin/bash
 set -exu
 
-if [ $# -eq 0 ] ; then
+if [[ $# -eq 0 ]] ; then
 M='auto update'
 else
 M="$*"
@@ -12,7 +12,7 @@ cd "`dirname "$(readlink -f "$0")"`"/..
 for k in */ ; do (
    set +e
    cd $k
-   [ -d .git ] || continue
+   [[ -d .git ]] || continue
    git add .
    git commit -m "$M"
    #git push origin master

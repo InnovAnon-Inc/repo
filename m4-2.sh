@@ -5,11 +5,11 @@ cd "$(dirname "`readlink -f "$0"`")"/..
 
 for p in */ ; do (
    set -xeu
-   [ -f $p/configure.ac ] || continue
-   [ $p != m4-common    ] || continue
+   [[ -f $p/configure.ac ]] || continue
+   [[ $p != m4-common    ]] || continue
    cd $p
 
-   if [ -d m4 ] ; then
+   if [[ -d m4 ]] ; then
    git rm -r m4
    rm -rf m4
    fi

@@ -3,7 +3,7 @@ set -exu
 #USE_REPO=0
 USE_REPO=1
 
-[ $USE_REPO -eq 0 ] ||
+[[ $USE_REPO -eq 0 ]] ||
 sudo rm -rf /opt/repo
 
 sudo rm -rf /tmp/build
@@ -23,10 +23,10 @@ for k in glitter ; do
 set -e
 sudo -u cis -i \
 ~/src/dpkg.sh ~/src/$k
-if [ $USE_REPO -eq 0 ] ; then
+if [[ $USE_REPO -eq 0 ]] ; then
 sudo dpkg -i /tmp/build/${k,,}/*/${k,,}*.deb
 else
-[ -d /opt/repo/amd64 ] ||
+[[ -d /opt/repo/amd64 ]] ||
 sudo mkdir -pv /opt/repo/amd64
 sudo cp -v /tmp/build/${k,,}/*/${k,,}*.deb /opt/repo/amd64
 ( cd /opt/repo
