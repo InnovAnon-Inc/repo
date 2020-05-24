@@ -21,12 +21,7 @@ getcurl() {
 #fi
 
 #if ! command -v docker-compose ; then
-  [[ ! `command -v pcurl` ]] || return
-
-  command -v curl ||
-  sudo apt-fast install -qy curl
-
-  sudo mkdir -pv /usr/local/bin
+  getcurl
   pcurl "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" \
   | sudo tee /usr/local/bin/docker-compose > /dev/null
   sudo chmod -v +x /usr/local/bin/docker-compose
