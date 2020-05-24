@@ -2,7 +2,7 @@
 set -exu
 [[ $# -eq 0 ]]
 
-function getcurl {
+getcurl() {
   [[ ! `command -v pcurl` ]] || return
 
   command -v curl ||
