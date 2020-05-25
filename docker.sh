@@ -3,7 +3,10 @@ set -exu
 
 cd "`dirname "$(readlink -f "$0")"`"/..
 
-for k in poobuntu{,-{dev,ci}} docker-apt-cacher-ng Abaddon{,-gui} docker-hexchat docker-{wads,wine,zandronum,doom} ; do (
+for k in poobuntu{,-{dev,ci}} docker-apt-cacher-ng     \
+         Abaddon{,-gui}       docker-{hexchat,firefox} \
+         docker-{wads,wine,zandronum,doomsday,doom}    \
+         docker-buildworld ; do (
   set -exu
   cd $k
   ./run.sh

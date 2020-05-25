@@ -21,4 +21,5 @@ cp -r $PROJECT $DIR
 cd             $DIR
 
 git checkout -b $BRANCH
+git push --set-upstream origin $BRANCH
 

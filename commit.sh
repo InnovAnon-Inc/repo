@@ -23,6 +23,7 @@ for k in */ ; do (
   sleep 1
 done
 
+set +x
 waitall() { # PID...
   ## Wait for children to exit and indicate whether all exited with 0 status.
   local errors=0
