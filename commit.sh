@@ -14,12 +14,12 @@ for k in */ ; do (
    set +e
    cd $k
    [[ -d .git ]] || continue
-   git add .
-   git commit -m "$M"
-   #git push origin master
+   git add .               ;
+   git commit -m "$M"      ;
+   #git push origin master ;
    git push origin
 ) &
-  pids+=($?)
+  pids+=($!)
   sleep 1
 done
 
@@ -42,5 +42,5 @@ waitall() { # PID...
   ((errors == 0))
 }
 
-waitall "${pids[@]}"
+waitall ${pids[@]}
 
