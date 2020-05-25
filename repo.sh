@@ -3,7 +3,8 @@ set -exu
 [[ $# -eq 1 ]]
 REPO=$1
 
-[[ -d $REPO/`dpkg --print-architecture` ]] ||
+#[[ -d $REPO/`dpkg --print-architecture` ]] ||
+[[ -e $REPO/`dpkg --print-architecture` ]] ||
 mkdir -pv $REPO/`dpkg --print-architecture`
 #sudo cp -v /tmp/build/${k,,}/*/${k,,}*.deb $REPO/`dpkg --print-architecture`
 cd $REPO
