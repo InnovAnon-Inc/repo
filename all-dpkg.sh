@@ -22,26 +22,19 @@ for k in glitter ; do
   git push origin master )
 set -e
 sudo -u cis -i \
-~/src/dpkg.sh ~/src/$k
+~/src/repo/dpkg.sh ~/src/$k
 if [[ $USE_REPO -eq 0 ]] ; then
 sudo dpkg -i /tmp/build/${k,,}/*/${k,,}*.deb
 else
-[[ -d /opt/repo/amd64 ]] ||
-sudo mkdir -pv /opt/repo/amd64
-sudo cp -v /tmp/build/${k,,}/*/${k,,}*.deb /opt/repo/amd64
+[[ -d /opt/repo/`dpkg --print-architecture` ]] ||
+sudo mkdir -pv /opt/repo/`dpkg --print-architecture`
+sudo cp -v /tmp/build/${k,,}/*/${k,,}*.deb /opt/repo/`dpkg --print-architecture`
 ( cd /opt/repo
-  #dpkg-scanpackages . /dev/null | xz -9c | sudo tee Packages.xz > /dev/null
   sudo rm -f /opt/KEY.gpg
   #sudo gpg --output /opt/KEY.gpg --armor --export 38BBDB7C15E81F38AAF6B7E614F31DFAC260053E
   sudo gpg --output /opt/KEY.gpg --armor --export 53F31F9711F06089\!
-  sudo apt-key add /opt/KEY.gpg
-  apt-ftparchive --arch amd64 packages amd64 | sudo tee Packages > /dev/null
-  sudo xz -9kf Packages
-  apt-ftparchive release . | sudo tee Release > /dev/null
-  sudo rm -fr InRelease
-  #sudo gpg --default-key 38BBDB7C15E81F38AAF6B7E614F31DFAC260053E --clearsign -o InRelease Release
-  sudo gpg --default-key 53F31F9711F06089\! --clearsign -o InRelease Release
-)
+  sudo apt-key add /opt/KEY.gpg )
+sudo ~/src/repo/repo.sh /opt/repo
 sudo apt-fast update
 DEBS="${k,,}1 ${k,,}-dev ${k,,}-doc"
 sudo apt-fast install --reinstall --yes $DEBS
