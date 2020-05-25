@@ -18,7 +18,10 @@ for k in */ ; do (
    git commit -m "$M"
    #git push origin master
    git push origin
-) & pids+=($?) ; sleep 1 ; done
+) &
+  pids+=($?)
+  sleep 1
+done
 
 waitall() { # PID...
   ## Wait for children to exit and indicate whether all exited with 0 status.
@@ -39,5 +42,5 @@ waitall() { # PID...
   ((errors == 0))
 }
 
-waitall ${pids[@]}
+waitall "${pids[@]}"
 
