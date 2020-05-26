@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 set -eu
 
 #ARCH=`gcc -march=native -Q --help=target | grep -- '-march=' | cut -f3`

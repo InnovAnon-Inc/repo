@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 [[ $# -ne 0 ]]
 
 for k in * ; do
