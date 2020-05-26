@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 set -eu
 URL="$1"
 if   [[ $# -eq 2 ]] ; then REDIRECT="> $2"
@@ -33,11 +33,13 @@ waitall() { # PID...
 }
 
 FILESIZE=$(echo -n `curl -s -I "${URL}" | sed -n 's/^Content-Length: \([0-9]*\).*/\1/ip'`)
+[[ ! -z "$FILESIZE" ]]
 
 #TODO Add exit at this point if this previous step fails.
 
 #MAX_SEGMENTS=10
 MAX_SEGMENTS=$((`nproc` * 2))
+MAX_SEGMENTS=$((MAX_SEGMENTS > 10 ? 10 : MAX_SEGMENTS))
 
 SEGMENT_SIZE=$((${FILESIZE} / ${MAX_SEGMENTS}))
 
