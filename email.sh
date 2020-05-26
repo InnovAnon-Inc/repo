@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 set -exu
 
-if   [[ $# -eq 0 ]] ; then
+if   (( $# == 0 )) ; then
 FIND='laurence\.a\.maddox@gmail\.com'
 REPL='InnovAnon-Inc@protonmail.com'
-elif [[ $# -eq 2 ]] ; then
+elif (( $# == 2 )) ; then
 FIND="$1"
 REPL="$2"
 else exit 2 ; fi

@@ -9,29 +9,32 @@ for k in */ ; do (
    cd $k
    git pull origin master
 ) &
-  pids+=($!)
+  pids+=($! "git pull origin" 0)
   sleep 1
 done
 
-set +x
-waitall() { # PID...
-  ## Wait for children to exit and indicate whether all exited with 0 status.
-  local errors=0
-  while : ; do
-    for pid in "$@"; do
-      shift
-      if kill -0 "$pid" 2>/dev/null; then
-        set -- "$@" "$pid"
-      elif ! wait "$pid"; then
-        ((++errors))
-      fi
-    done
-    (("$#" > 0)) || break
-    # TODO: how to interrupt this sleep when a child terminates?
-    sleep ${WAITALL_DELAY:-1}
-   done
-  ((errors == 0))
-}
+source "`which waitall`"
+waitall "${pids[@]}"
 
-waitall ${pids[@]}
+#set +x
+#waitall() { # PID...
+#  ## Wait for children to exit and indicate whether all exited with 0 status.
+#  local errors=0
+#  while : ; do
+#    for pid in "$@"; do
+#      shift
+#      if kill -0 "$pid" 2>/dev/null; then
+#        set -- "$@" "$pid"
+#      elif ! wait "$pid"; then
+#        ((++errors))
+#      fi
+#    done
+#    (("$#" > 0)) || break
+#    # TODO: how to interrupt this sleep when a child terminates?
+#    sleep ${WAITALL_DELAY:-1}
+#   done
+#  ((errors == 0))
+#}
+#
+#waitall ${pids[@]}
 

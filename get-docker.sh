@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 set -exu
-[[ $# -eq 0 ]]
+(( $# == 0 ))
 
 getcurl() {
   [[ ! `command -v pcurl` ]] || return
