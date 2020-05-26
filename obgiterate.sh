@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-[[ $# -ne 0 ]]
+(( $# != 0 ))
 
 for k in * ; do
   git filter-branch -f --tree-filter \

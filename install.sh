@@ -3,7 +3,7 @@ set -exu
 
 DIR="`dirname "$(readlink -f "$0")"`"
 
-if [[ $# -eq 0 ]] ; then install=( comms.sh get-docker.sh march.sh parts.sh pcurl.sh )
+if (( $# == 0 )) ; then install=( comms.sh get-docker.sh march.sh parts.sh pcurl.sh waitall.sh )
 else                     install="$@"
 fi
 

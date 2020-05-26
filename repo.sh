@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 set -exu
-[[ $# -eq 1 ]]
+(( $# == 1 ))
 REPO=$1
 
 #[[ -d $REPO/`dpkg --print-architecture` ]] ||
