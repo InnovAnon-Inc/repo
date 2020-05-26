@@ -29,5 +29,6 @@ waitall() { # PID...
     sleep ${WAITALL_DELAY:-1}
    done
   ((errors == 0))
+  echo all subprocesses successful 1>&2
 }
 
