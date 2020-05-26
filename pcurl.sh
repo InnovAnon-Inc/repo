@@ -20,12 +20,22 @@ waitall() { # PID...
   ## Wait for children to exit and indicate whether all exited with 0 status.
   local errors=0
   while : ; do
-    for pid in "$@"; do
+    while (( "$#" >= 3 )) ; do
+      pid="$1"
+      part="$2"
+      retry="$3"
+      shift
+      shift
       shift
       if kill -0 "$pid" 2>/dev/null; then
-        set -- "$@" "$pid"
+        set -- "$@" "$pid" "$part" "$retry"
       elif ! wait "$pid"; then
-        ((++errors))
+        if ((retry < ${RETRIES:-10})) ; then
+          curl -s -L $part "${URL}" &
+          set -- "$@" $! "$part" $((retry + 1))
+        else
+          ((++errors))
+        fi
       fi
     done
     (("$#" > 0)) || break
@@ -61,8 +71,10 @@ trap "rm -rf $PARTS" 0
 declare -a pids
 eval segnums=( {1.."${MAX_SEGMENTS}}" )
 for i in "${segnums[@]}" ; do
-  curl -s -L --range ${START_SEG}-${END_SEG} -o "${PARTS}/part${i}" "${URL}" &
-  pids+=($!)
+  PART="--range ${START_SEG}-${END_SEG} -o "${PARTS}/part${i}""
+  #curl -s -L --range ${START_SEG}-${END_SEG} -o "${PARTS}/part${i}" "${URL}" &
+  curl -s -L $PART "${URL}" &
+  pids+=($! "$PART" 0)
   START_SEG=$((${END_SEG} + 1))
   END_SEG=$((${START_SEG} + "${SEGMENT_SIZE}"))
 done
