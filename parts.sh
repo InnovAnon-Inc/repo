@@ -4,6 +4,6 @@ set -eu
 (( $# >= 2 ))
 
 segstr="${@:2}"
-comstr=${segstr// /,}
+comstr="${segstr// /,}"
 eval echo "$1{$comstr}"
 
