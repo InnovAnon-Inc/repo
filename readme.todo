@@ -2,11 +2,6 @@ from readme-c.sh:
 
 Abaddon/
 Abaddon-gui/
-AlphaTech/
-CA/
-CIS/
-Files C-Thread-Pool//LICENSE and glitter/LICENSE differ
-C-Thread-Pool/
 docker-apt-cacher-ng/
 docker-arduino/
 docker-buildworld/
@@ -19,20 +14,15 @@ docker-signal/
 docker-wads/
 docker-wine/
 docker-zandronum/
-github/
-grub2/
-HafrenHaverJS/
-InnovAnon-Inc.github.io/
-InnovAnon-Inc.github.io-_posts/
 instAll/
-LHP/
 LLVM-Musl/
-logo/
-m4-common/
-Oblige/
 poobuntu/
 poobuntu-ci/
 poobuntu-dev/
-repo/
-worklistdb/
 
+AlphaTech/
+github/
+HafrenHaverJS/
+InnovAnon-Inc.github.io/
+InnovAnon-Inc.github.io-_posts/
+LHP/
