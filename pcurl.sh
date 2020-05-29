@@ -56,7 +56,9 @@ done
 #fi
 #(( START_SEG - 1 == FILESIZE ))
 
-source "`which waitall`"
+command -v waitall > /dev/null ||
+curl -qLo /usr/local/bin/waitall https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/waitall.sh
+source "`command -v waitall`"
 waitall "${pids[@]}"
 
 #segstr="${segnums[@]}"
