@@ -6,6 +6,7 @@ cd $1
 
 # https://www.lpenz.org/articles/debgit/index.html
 
+REPO=`basename ${PWD}`
 PACKAGE=`basename ${PWD,,}`
 
 rm -rf  /tmp/$PACKAGE
@@ -125,7 +126,7 @@ if [[ $PACKAGE = yacs ]] ; then
 #mkdir -v debian/tmp
 echo 'bin/*'             >> debian/${PACKAGE}1.install
 fi
-if [[ -e doxygen.cfg ]] ; then
+if [[ -e m4/doxygen.cfg ]] ; then
 #echo 'doxygen-doc/man/man1/*.1' >> debian/${PACKAGE}-doc.install
 #echo 'doxygen-doc/man/man1/*.*' >> debian/manpages
 echo 'doxygen-doc/man/man1/*' >> debian/manpages
@@ -136,7 +137,14 @@ sed -e '/Format.*sgml/d' \
     -e '/Files:.*sgml/d' \
     -e '/Format.*text/d' \
     -e '/Files:.*text/d' \
+    -e 's/\.ps\.gz/\.ps/' \
     debian/${PACKAGE}.doc-base.EX >> debian/${PACKAGE}.doc-base
+    cat >> debian/${PACKAGE}.doc-base << EOF
+
+Format: pdf
+Files: /usr/share/doc/glitter/glitter.pdf
+
+EOF
 
 #mkdir -pv debian/tmp/usr/share/doc/${PACKAGE}
 #cp -a doxygen-doc/html debian/tmp/usr/share/doc/${PACKAGE}/
@@ -145,6 +153,15 @@ sed -e '/Format.*sgml/d' \
 #echo "usr/share/doc/${PACKAGE}/html/*" >> debian/${PACKAGE}-docs.install
 
 fi
+
+cat > debian/watch << EOF
+version=4
+
+# GitHub hosted projects
+opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%${PACKAGE}-\$1.tar.gz%" \\
+   https://github.com/InnovAnon-Inc/${REPO}/tags \\
+   (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian uupdate
+EOF
 
 # copyright: where to get the package and license
 # changelog: email
