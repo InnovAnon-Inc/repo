@@ -57,7 +57,7 @@ done
 #(( START_SEG - 1 == FILESIZE ))
 
 command -v waitall > /dev/null ||
-curl -qLo /usr/local/bin/waitall https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/waitall.sh
+curl -Lo /usr/local/bin/waitall https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/waitall.sh
 source "`command -v waitall`"
 waitall "${pids[@]}"
 
