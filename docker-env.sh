@@ -3,7 +3,7 @@ set -exu
 
 if ! command -v march ; then
   curl -Lo /usr/local/bin/march https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/march.sh
-  chmod +x /usr/locla/bin/march
+  chmod +x /usr/local/bin/march
 fi
 
 LINES="`march`"
