@@ -56,8 +56,10 @@ done
 #fi
 #(( START_SEG - 1 == FILESIZE ))
 
-command -v waitall > /dev/null ||
-curl -Lo /usr/local/bin/waitall https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/waitall.sh
+if ! command -v waitall > /dev/null ; then
+  curl -Lo /usr/local/bin/waitall https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/waitall.sh
+  chmod +x /usr/local/bin/waitall
+fi
 source "`command -v waitall`"
 waitall "${pids[@]}"
 
