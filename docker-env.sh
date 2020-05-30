@@ -9,8 +9,8 @@ fi
 LINES="`march`"
 ARCH=`echo $LINES | awk '{print $1}'`
 TUNE=`echo $LINES | awk '{print $2}'`
-export   CFLAGS="${CFLAGS+x}   -march=$ARCH -mtune=$TUNE"
-export CXXFLAGS="${CXXFLAGS+x} -march=$ARCH -mtune=$TUNE"
+export   CFLAGS="${CFLAGS:-}   -march=$ARCH -mtune=$TUNE"
+export CXXFLAGS="${CXXFLAGS:-} -march=$ARCH -mtune=$TUNE"
 unset LINES ARCH TUNE
 
 $*
