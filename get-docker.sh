@@ -14,9 +14,6 @@ getcurl() {
   sudo chmod -v +x /usr/local/bin/pcurl
 }
 
-getcurl
-exit 2
-
 if ! command -v dockerd ; then
   getcurl
   pcurl https://download.docker.com/linux/static/stable/`uname -m`/docker-19.03.8.tgz \
