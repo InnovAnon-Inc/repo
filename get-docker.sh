@@ -3,15 +3,15 @@ set -exu
 (( $# == 0 ))
 
 getcurl() {
-  if command -v pcurl ; then return ; fi
-
   command -v curl ||
   sudo apt-fast install -qy curl
 
-  sudo mkdir -pv /usr/local/bin
-  curl https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/pcurl.sh \
-  | sudo tee /usr/local/bin/pcurl > /dev/null
-  sudo chmod -v +x /usr/local/bin/pcurl
+  if ! command -v pcurl ; then
+    sudo mkdir -pv /usr/local/bin
+    curl https://raw.githubusercontent.com/InnovAnon-Inc/repo/master/pcurl.sh \
+    | sudo tee /usr/local/bin/pcurl > /dev/null
+    sudo chmod -v +x /usr/local/bin/pcurl
+  fi
 }
 
 if ! command -v dockerd ; then
