@@ -131,7 +131,9 @@ if [[ -e m4/doxygen.cfg ]] ; then
 #echo 'doxygen-doc/man/man1/*.*' >> debian/manpages
 echo 'doxygen-doc/man/man1/*' >> debian/manpages
 
-#echo 'doxygen-doc/html/*' >> debian/${PACKAGE}.docs
+# TODO testing
+echo 'doxygen-doc/html/*' >> debian/${PACKAGE}.docs
+echo 'doxygen-doc/html/*' >> debian/${PACKAGE}-doc.install
 
 sed -e '/Format.*sgml/d' \
     -e '/Files:.*sgml/d' \

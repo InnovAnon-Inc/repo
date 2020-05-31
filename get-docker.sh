@@ -3,7 +3,7 @@ set -exu
 (( $# == 0 ))
 
 getcurl() {
-  [[ ! `command -v pcurl` ]] || return
+  if command -v pcurl ; then return ; fi
 
   command -v curl ||
   sudo apt-fast install -qy curl
@@ -13,6 +13,9 @@ getcurl() {
   | sudo tee /usr/local/bin/pcurl > /dev/null
   sudo chmod -v +x /usr/local/bin/pcurl
 }
+
+getcurl
+exit 2
 
 if ! command -v dockerd ; then
   getcurl
