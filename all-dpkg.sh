@@ -9,10 +9,10 @@ sudo rm -rf /opt/repo
 sudo rm -rf /tmp/build
 
 #for k in glitter restart EZIO swap MultiMalloc StD Array ezparse AVA CAQ CHeap PArray CPAQ C-Thread-Pool DArr ezfork SFork DFork YACS DOS EVIO network eztcp ezudp iSqrt kahan lunar RW2ChIPC RW2ChIPCStd RW2ChIPCStdExec shell SLL solar TSCPAQ ThIpe ThrEll ThrEv ThrIO ZePaSt ; doA
-#for k in glitter restart EZIO swap MultiMalloc StD Array ezparse     CAQ CHeap PArray CPAQ C-Thread-Pool DArr ezfork SFork DFork YACS DOS EVIO network eztcp ezudp iSqrt kahan       RW2ChIPC RW2ChIPCStd RW2ChIPCStdExec shell SLL       TSCPAQ ThIpe ThrEll ThrEv ThrIO ZePaSt ; do
+for k in glitter restart EZIO swap MultiMalloc StD Array ezparse     CAQ CHeap PArray CPAQ C-Thread-Pool DArr ezfork SFork DFork YACS DOS EVIO network eztcp ezudp iSqrt kahan       RW2ChIPC RW2ChIPCStd RW2ChIPCStdExec shell SLL       TSCPAQ ThIpe ThrEll ThrEv ThrIO ZePaSt ; do
 #for k in lunar ; do
 #for k in AVA ; do
-for k in glitter ; do
+#for k in glitter ; do
 
 ( set +e
   cd ~/src/$k/
