@@ -10,5 +10,5 @@ mkfifo "$F/f"
 # from the manpage
 cat "$F/f"      |
 /bin/sh -i 2>&1 |
-nc -l 127.0.0.1 1234 > "$F/f"
+nc -kl 127.0.0.1 1234 > "$F/f"
 

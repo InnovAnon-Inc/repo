@@ -3,7 +3,7 @@ set -exu
 #USE_REPO=0
 USE_REPO=1
 
-(( $USE_REPO == 0 )) ||
+(( ! "$USE_REPO" )) ||
 sudo rm -rf /opt/repo
 
 sudo rm -rf /tmp/build

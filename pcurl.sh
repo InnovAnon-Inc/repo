@@ -76,7 +76,7 @@ if [[ "${CHECKSUM+x}" ]] ; then
   echo "$CHECKSUM" "${PARTS}/whole" | "$CHECKALG" -c
 fi
 
-if (( $# == 1 )) ; then
+if (( $# )) ; then
   cat "${PARTS}/whole"
 else
   mv "${PARTS}/whole" "$2"

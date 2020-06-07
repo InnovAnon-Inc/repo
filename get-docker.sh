@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 set -exu
-(( $# == 0 ))
+(( ! $# ))
 
 getcurl() {
   command -v curl ||

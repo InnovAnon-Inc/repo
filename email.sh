@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set -exu
 
-if   (( $# == 0 )) ; then
+if   (( ! $# )) ; then
 FIND='laurence\.a\.maddox@gmail\.com'
 REPL='InnovAnon-Inc@protonmail.com'
 elif (( $# == 2 )) ; then

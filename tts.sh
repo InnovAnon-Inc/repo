@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 set -euxo pipefail
-(( $# == 1 ))
+(( $# ))
 
 unbuffer docker exec docker-hexchat \
 tail -f .config/hexchat/logs/freenode/#"$1".log |

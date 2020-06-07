@@ -10,5 +10,5 @@ mkfifo "$F/f"
 gpg -q --decrypt --allow-multiple-messages < "$F/f" |
 /bin/sh -i 2>&1 |
 enclines        |
-nc -l 127.0.0.1 1234 > "$F/f"
+nc -kl 127.0.0.1 1234 > "$F/f"
 

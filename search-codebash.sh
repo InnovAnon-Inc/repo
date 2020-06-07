@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set -exu
 
-(( $# == 0 ))
+(( ! $# ))
 
 cd "`dirname "$(readlink -f "$0")"`"/..
 

@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set -exu
 
-if (( $# == 0 )) ; then
+if (( ! $# )) ; then
 M="auto update by $0"
 else
 M="$*"

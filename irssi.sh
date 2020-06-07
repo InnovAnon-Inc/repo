@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-(( #$ == 2)
+(( #$ == 2 ))
 server="$1"
 chatnet="$2"
 
