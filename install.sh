@@ -6,7 +6,7 @@ DIR="`dirname "$(readlink -f "$0")"`"
 [[ -d          /usr/local/bin ]] ||
 sudo mkdir -pv /usr/local/bin
 
-if (( $# == 0 )) ; then install=( comms.sh get-docker.sh march.sh parts.sh pcurl.sh waitall.sh fawk.sh )
+if (( $# == 0 )) ; then install=( comms.sh get-docker.sh march.sh parts.sh pcurl.sh waitall.sh fawk.sh enclines.sh encrshell-client.sh )
 else                     install="$@"
 fi
 
