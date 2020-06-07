@@ -7,7 +7,7 @@ DIR="`dirname "$(readlink -f "$0")"`"
 sudo mkdir -pv /usr/local/bin
 
 if (( ! $# )) ; then install=( comms.sh get-docker.sh \
-	m{arch,tune}.sh fawk.sh                       \
+	m{arch,tune}.sh fawk.sh apt-glob.sh           \
        	parts.sh pcurl.sh waitall.sh                  \
 	enclines.sh rshell-{,enc-}{client,server}.sh  \
 	)
