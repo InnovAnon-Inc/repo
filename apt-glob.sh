@@ -4,6 +4,7 @@ set -euo pipefail
 { for k in $* ; do
     echo "${k##^#.*}"
   done        ;
+  sed '/^#/d' ;
   cat         ; } |
 xargs -I @ sh -c  \
   "apt list '@' 2> /dev/null | \
