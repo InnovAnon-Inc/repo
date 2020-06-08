@@ -2,7 +2,7 @@
 set -euo pipefail
 
 { for k in $* ; do
-    echo "$k"
+    echo "${k##^#.*}"
   done        ;
   cat         ; } |
 xargs -I @ sh -c  \
