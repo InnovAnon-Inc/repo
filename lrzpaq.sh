@@ -6,7 +6,7 @@ set -euxo pipefail
 D="$(mktemp -d)"
 trap "rm -fr $D" 0
 
-X=0
+X="${X:-0}"
 while getopts "d" arg; do
   case $arg in
     d)
