@@ -14,15 +14,16 @@ shift $((OPTIND-1))
 
 if (( $# )) ; then
   for k in $* ; do
-    echo "${k##^#.*}"
+    echo "${k##^#*}"
   done
 else
-  sed '/^#/d'
+  sed -e '/^#/d' \
+      -e '/^$/d'
 fi |
 if (( "$NO_GLOB" )) ; then
   cat
 else
-  xargs -I @ sh -c  \
+  xargs -I @ $SHELL -c  \
     "apt list '@' 2> /dev/null | \
      awk -F / 'NR > 1 {print \$1}'"
 fi
