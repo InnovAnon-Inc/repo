@@ -19,7 +19,7 @@ if (( ! $# )) ; then install=( comms.sh get-docker.sh \
 else                     install=("$@")
 fi
 
-for k in "${install[@]}" ; do
+for k in ${install[@]} ; do
   $SUDO ln -fsv "$DIR/$k" "/usr/local/bin/${k%.sh}"
 done
 
