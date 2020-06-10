@@ -16,10 +16,10 @@ if (( ! $# )) ; then install=( comms.sh get-docker.sh \
        	parts.sh pcurl.sh waitall.sh                  \
 	enclines.sh rshell-{,enc-}{client,server}.sh  \
 	)
-else                     install=("$@")
+else                     install=($@)
 fi
 
-for k in ${install[@]} ; do
+for k in "${install[@]}" ; do
   $SUDO ln -fsv "$DIR/$k" "/usr/local/bin/${k%.sh}"
 done
 
