@@ -1,10 +1,12 @@
 #! /usr/bin/env bash
-set -exu
+set -euxo pipefail
+(( ! "$UID" )) ||
+SUDO="${SUDO:-sudo}"
 
 DIR="`dirname "$(readlink -f "$0")"`"
 
 [[ -d          /usr/local/bin ]] ||
-sudo mkdir -pv /usr/local/bin
+$SUDO mkdir -pv /usr/local/bin
 
 if (( ! $# )) ; then install=( comms.sh get-docker.sh \
 	m{arch,tune}.sh fawk.sh apt-{glob,list}.sh    \
@@ -15,6 +17,6 @@ else                     install="$@"
 fi
 
 for k in "${install[@]}" ; do
-sudo ln -fsv "$DIR/$k" "/usr/local/bin/${k%.sh}"
+$SUDO ln -fsv "$DIR/$k" "/usr/local/bin/${k%.sh}"
 done
 
