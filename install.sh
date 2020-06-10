@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
 set -euxo pipefail
-(( ! "$UID" )) ||
-SUDO="${SUDO:-sudo}"
+SUDO="${SUDO:-(( "$UID" ? sudo : '' ))}"
 
 DIR="`dirname "$(readlink -f "$0")"`"
 
