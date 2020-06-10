@@ -20,6 +20,7 @@ else                     install=($@)
 fi
 
 for k in ${install[@]} ; do
+    chmod -v +x "$DIR/$k"
   $SUDO ln -fsv "$DIR/$k" "/usr/local/bin/${k%.sh}"
 done
 
