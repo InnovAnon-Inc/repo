@@ -1,9 +1,8 @@
 #! /usr/bin/env bash
-(( $# != 0 ))
+set -euo pipefail
+(( $# ))
 
-for k in * ; do
-  git filter-branch -f --tree-filter \
-    "rm -f $k" HEAD
-done
+git filter-branch -f --tree-filter \
+  "rm -vf "$(printf %q "$*")"" HEAD
 git push origin --force --all
 
