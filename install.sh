@@ -1,6 +1,10 @@
 #! /usr/bin/env bash
 set -euxo pipefail
-SUDO="${SUDO:-(( "$UID" ? sudo : '' ))}"
+if (( "$UID" )) ; then
+  SUDO="${SUDO:-sudo}"
+else
+  SUDO="${SUDO:-}"
+fi
 
 DIR="`dirname "$(readlink -f "$0")"`"
 
@@ -16,6 +20,6 @@ else                     install="$@"
 fi
 
 for k in "${install[@]}" ; do
-$SUDO ln -fsv "$DIR/$k" "/usr/local/bin/${k%.sh}"
+  $SUDO ln -fsv "$DIR/$k" "/usr/local/bin/${k%.sh}"
 done
 
