@@ -15,10 +15,10 @@ while getopts "ge" arg; do
 done
 shift $((OPTIND-1))
 
+apt-list $ECHO $* |
 if (( "$NO_GLOB" )) ; then
-  apt-list $ECHO
+  cat
 else
-  apt-list $ECHO |
   xargs -I @ $SHELL -c  \
     "apt list '@' 2> /dev/null | \
      awk -F / 'NR > 1 {print \$1}'"
