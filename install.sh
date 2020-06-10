@@ -5,6 +5,7 @@ if (( "$UID" )) ; then
 else
   SUDO="${SUDO:-}"
 fi
+REPO="${REPO:-https://raw.githubusercontent.com/InnovAnon-Inc/repo/master}"
 
 DIR="`dirname "$(readlink -f "$0")"`"
 
@@ -16,11 +17,13 @@ if (( ! $# )) ; then install=( comms.sh get-docker.sh \
        	parts.sh pcurl.sh waitall.sh                  \
 	enclines.sh rshell-{,enc-}{client,server}.sh  \
 	)
-else                     install=($@)
+else                 install=($@)
 fi
 
 for k in ${install[@]} ; do
-  $SUDO chmod -v +x "$DIR/$k"
-  $SUDO ln -fsv     "$DIR/$k" "/usr/local/bin/${k%.sh}"
+  [[ -e             "$DIR/$k" ]] ||
+  curl -Lo          "$DIR/$k" "$REPO/$k"                || exit $?
+  $SUDO chmod -v +x "$DIR/$k"                           || exit $?
+  $SUDO ln -fsv     "$DIR/$k" "/usr/local/bin/${k%.sh}" || exit $?
 done
 
