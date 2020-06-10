@@ -9,7 +9,7 @@ REPO=https://raw.githubusercontent.com/InnovAnon-Inc/repo/master
 {  sed -e '/^#/d' \
        -e '/^$/d' \
        $@         ;
-   echo repo.sh   ;
+   echo "$(basename "$0")" ;
 }                 |
 { cd        /usr/local/bin ;
   while read line ; do
