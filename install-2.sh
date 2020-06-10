@@ -6,9 +6,11 @@ set -euxo pipefail
 
 REPO=https://raw.githubusercontent.com/InnovAnon-Inc/repo/master
 
-sed -e '/^#/d' \
-    -e '/^$/d' \
-    $@         |
+{  sed -e '/^#/d' \
+       -e '/^$/d' \
+       $@         ;
+   echo repo.sh   ;
+}                 |
 { cd        /usr/local/bin ;
   while read line ; do
     l="${line%.sh}"
