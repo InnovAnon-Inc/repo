@@ -8,7 +8,7 @@ done
 
 T="`mktemp`"
 trap "rm -f $T" 0
-fawk "${0/.sh/.awk}" \
+"${0/.sh/.awk}" \
   < /etc/dnscrypt-proxy/dnscrypt-proxy.conf > "$T"
 sudo cp -v "$T" /etc/dnscrypt-proxy/dnscrypt-proxy.conf
 
